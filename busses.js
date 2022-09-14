@@ -1,4 +1,4 @@
-var busses = {
+let busses = {
 	"bustime-response": {
 		"vehicle": [
 			{
