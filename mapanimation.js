@@ -32,16 +32,22 @@ function removeMarkers(){
 
 // Request bus data from CTA
 async function getBusLocations(){
-    //const url = 'https://www.ctabustracker.com/bustime/api/v3/getvehicles?key=wZHcXx3PsREP5QqHSbjYQ2sLi&format=json&rt=62,62H,63,63W';
+    const url = 'https://www.ctabustracker.com/bustime/api/v3/getvehicles?key=wZHcXx3PsREP5QqHSbjYQ2sLi&format=json&rt=62,62H,63,63W';
    // const url = 'https://www.ctabustracker.com/bustime/api/v3/getvehicles?key=89dj2he89d8j3j3ksjhdue93&format=json&rt=62,62H,63,63W';
-	//const response = await fetch(url);
-    console.log(busses);
-    const vehicles = busses['bustime-response'].vehicle;
-    console.log(vehicles);
+	
+	const updatedURL = `https://corsanywhere.herokuapp.com/${url}`;
+    let vehicles;// = busses['bustime-response'].vehicle;
+    //console.log(vehicles);
+	const response = await fetch(updatedURL)
+  		.then(function(response) {
+    	return response.json();
+  		}).then(function(data) {
+		vehicles = data['bustime-response'].vehicle;
+	});	
+	
 	let locations = [];
 	for(let i=0;i<vehicles.length;i++){
 		locations.push([vehicles[i].lon,vehicles[i].lat]);
-        //console.log(json);
     }
 	
 	return locations;
