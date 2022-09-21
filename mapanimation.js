@@ -36,8 +36,7 @@ async function getBusLocations(){
    // const url = 'https://www.ctabustracker.com/bustime/api/v3/getvehicles?key=89dj2he89d8j3j3ksjhdue93&format=json&rt=62,62H,63,63W';
 	
 	const updatedURL = `https://corsanywhere.herokuapp.com/${url}`;
-    let vehicles;// = busses['bustime-response'].vehicle;
-    //console.log(vehicles);
+    let vehicles;
 	const response = await fetch(updatedURL)
   		.then(function(response) {
     	return response.json();
